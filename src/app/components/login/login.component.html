@@ -1,0 +1,20 @@
+<section class="login fade-in"*ngIf="!spinnerActive">
+	<div class="container">
+		<form [formGroup]="form" class="form">
+			<div class="form__input-box">
+				<input formControlName="email" class="form__input" type="email" placeholder="Email">
+				<p *ngIf="email?.touched && email?.errors?.['required']" class="form__error-message">Email required.</p>
+                <p *ngIf="email?.touched && email?.errors?.['email']" class="form__error-message">Invalid email.</p>
+			</div>
+			<div class="form__input-box">
+				<input formControlName="password" class="form__input" type="password" placeholder="Password">
+				<p *ngIf="password?.touched && password?.errors?.['required']" class="form__error-message">Password required.</p>
+			</div>
+			<button (click)="onLogin()" [disabled]="form.invalid" class="btn">Login</button>
+            <span class="form__redirect">You don't have an account? <a [routerLink]="['/signup']" >Sign up</a></span>
+		</form>
+        <app-pop-up *ngIf="errorMessage" [message]="errorMessage" (closeEvent)="onCloseEvent()"></app-pop-up>
+	</div>
+
+</section>
+<app-loading-spinner *ngIf="spinnerActive"></app-loading-spinner>

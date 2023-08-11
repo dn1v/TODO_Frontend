@@ -1,0 +1,19 @@
+<section class="navigation fade-in">
+    <div class="container">
+        <nav class="navigation__navbar">
+            <ul class="navigation__list">
+                <li class="navigation__item">
+                    <a [routerLink]="['user']" class="navigation__link">Profile</a>
+                </li>
+                <li class="navigation__item">
+                    <a [routerLink]="['tasks']" class="navigation__link">Tasks</a>
+                </li>
+                <li class="navigation__item">
+                    <a (click)="onLogout()" class="navigation__link">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+
