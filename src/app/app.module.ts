@@ -17,6 +17,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { IonicModule } from '@ionic/angular';
 import { AuthInterceptorService } from './core/interceptors/auth.interceptor';
+import { TaskItemComponent } from './components/task/task-item/task-item.component';
+import { TaskService } from './core/services/task.service';
 
 @NgModule({
     declarations: [
@@ -28,7 +30,8 @@ import { AuthInterceptorService } from './core/interceptors/auth.interceptor';
         TaskComponent,
         FooterComponent,
         LoadingSpinnerComponent,
-        PopUpComponent
+        PopUpComponent,
+        TaskItemComponent
     ],
     imports: [
         BrowserModule,
@@ -39,7 +42,7 @@ import { AuthInterceptorService } from './core/interceptors/auth.interceptor';
         BrowserModule,
         IonicModule.forRoot()
     ],
-    providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+    providers: [AuthService, TaskService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
