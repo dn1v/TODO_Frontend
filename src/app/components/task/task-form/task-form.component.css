@@ -1,0 +1,77 @@
+
+.task-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    width: 100%;
+}
+
+.task-form__form {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.task-form__content {
+    min-height: 100px;
+    width: 100%;
+    resize: none;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.task-form__switch {
+    position: relative;
+}
+
+.task-form__switch label {
+    width: 55px;
+    height: 23px;
+    background-color: #999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+}
+
+.task-form__switch input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.task-form__switch label:after {
+    content: "";
+    width: 21px;
+    height: 21px;
+    border-radius: 50px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: 100ms;
+    background-color: white;
+}
+
+.task-form__switch .look:checked + label:after {
+    left: 32px;
+}
+
+.task-form__switch .look:checked + label {
+    background-color: #2ecc71;
+}
+
+.task-form__btn-close {
+    position: absolute;
+    font-size: 20px;
+    right: 5px;
+    top: 5px;
+    background-color: transparent;
+}

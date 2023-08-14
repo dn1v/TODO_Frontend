@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TaskService } from 'src/app/core/services/task.service';
 import { Task } from 'src/models/task.model';
 
@@ -13,20 +13,28 @@ export class TaskComponent implements OnInit {
 
     errorMessage: string = ''
 
-    constructor(private service: TaskService) { }
+    openModal: boolean = false
+
+    spinnerActive: boolean = false
+
+    constructor(private service: TaskService, private cdr: ChangeDetectorRef) { }
 
     ngOnInit(): void {
         this.getTasks()
     }
 
     getTasks(): void {
+        this.spinnerActive = true
         this.service.fetchTasks().subscribe({
             next: (tasks: Task[]) => {
                 this.tasks = tasks
+                this.spinnerActive = false
+                // this.cdr.detectChanges()
                 console.log(this.tasks)
             },
             error: (err: any) => {
                 this.errorMessage = err.message
+                this.spinnerActive = false
                 console.log(this.errorMessage)
             }
         })
@@ -35,5 +43,19 @@ export class TaskComponent implements OnInit {
     onTaskUpdated(): void {
         this.getTasks()
     }
+
+    onCreateTask(): void {
+        let ovj = {}
+        this.service.createTask(ovj)
+    }
+
+    onModal(): void {
+        this.openModal = !this.openModal
+    }
+
+    onTaskCreated(): void {
+        this.getTasks()
+    }
+
 
 }

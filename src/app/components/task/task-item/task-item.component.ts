@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { subscribeOn } from 'rxjs';
 import { TaskService } from 'src/app/core/services/task.service';
 import { Task } from 'src/models/task.model';
 

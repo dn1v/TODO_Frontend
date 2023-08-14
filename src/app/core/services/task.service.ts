@@ -18,11 +18,15 @@ export class TaskService {
     }
 
     updateTask(_id: string, obj: any) {
-        return this.http.patch(`${this.BASE_URL}/${_id}`, obj)
+        return this.http.patch(`${this.BASE_URL}/${_id}`, obj).pipe(catchError((err) => this.handleError(err)))
     }
 
     deleteTask(_id: string) {
         return this.http.delete(`${this.BASE_URL}/${_id}`)
+    }
+
+    createTask(obj: any) {
+        return this.http.post(`${this.BASE_URL}`, obj).pipe(map((data: any) => data && new Task(data)), catchError((err) => this.handleError(err)))
     }
 
     handleError(err: HttpErrorResponse) {

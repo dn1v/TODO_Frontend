@@ -19,6 +19,7 @@ import { IonicModule } from '@ionic/angular';
 import { AuthInterceptorService } from './core/interceptors/auth.interceptor';
 import { TaskItemComponent } from './components/task/task-item/task-item.component';
 import { TaskService } from './core/services/task.service';
+import { TaskFormComponent } from './components/task/task-form/task-form.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { TaskService } from './core/services/task.service';
         FooterComponent,
         LoadingSpinnerComponent,
         PopUpComponent,
-        TaskItemComponent
+        TaskItemComponent,
+        TaskFormComponent
     ],
     imports: [
         BrowserModule,

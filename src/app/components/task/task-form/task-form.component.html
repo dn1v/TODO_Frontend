@@ -1,0 +1,33 @@
+<section class="task-form fade-in">
+    <form [formGroup]="form" class="task-form__form">
+        <button (click)="onClose()" class="task-form__btn-close"><ion-icon name="close-circle-outline"></ion-icon></button>
+
+        <div class="form__input-box">
+            <textarea
+                formControlName="content"
+                class="task-form__content"
+                placeholder="Write your task here..."
+            ></textarea>
+            <p
+                *ngIf="content?.touched && content?.errors?.['required']"
+                class="form__error-message"
+            >
+                Content required.
+            </p>
+        </div>
+
+        <div class="task-form__switch">
+            <input
+                formControlName="done"
+                id="checkbox1"
+                class="look"
+                type="checkbox"
+            />
+            <label for="checkbox1"></label>
+        </div>
+        <!-- <p *ngIf="done">Done</p> -->
+        <button [disabled]="form.invalid" (click)="onCreateTask()" class="btn">
+            Create
+        </button>
+    </form>
+</section>

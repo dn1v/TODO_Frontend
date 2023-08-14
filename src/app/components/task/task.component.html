@@ -1,24 +1,17 @@
 <section class="tasks fade-in">
     <div class="container">
         <div class="tasks__container">
-            <!-- <div *ngFor="let task of tasks" class="tasks__task-box fade-in" [ngClass]="{'todo-border': !task.done}">
-                <p class="tasks__description">{{ task.content }}</p>
-                <div class="tasks__btn-box">
-                    <button
-                        class="tasks__btn"
-                        [ngClass]="{'done': task.done, 'todo': !task.done}"
-                    >
-                        <ion-icon name="checkmark-done-sharp"></ion-icon>
-                    </button>
-                    <button class="tasks__btn">
-                        <ion-icon name="create-sharp"></ion-icon>
-                    </button>
-                    <button class="tasks__btn">
-                        <ion-icon name="trash-sharp"></ion-icon>
-                    </button>
-                </div>
-            </div> -->
-            <app-task-item *ngFor="let task of tasks" [task]="task" (taskUpdated)="onTaskUpdated()"></app-task-item>
+            <button (click)="onModal()" class="btn btn--create">New</button>
+
+            <app-task-item
+                *ngFor="let task of tasks"
+                [task]="task"
+                (taskUpdated)="onTaskUpdated()"
+            ></app-task-item>
         </div>
     </div>
+    <div *ngIf="openModal" class="overlay fade-in">
+        <app-task-form (taskCreated)="onTaskCreated()" (modalClosed)="onModal()"></app-task-form>
+    </div>
+    <app-loading-spinner *ngIf="spinnerActive"></app-loading-spinner>
 </section>
