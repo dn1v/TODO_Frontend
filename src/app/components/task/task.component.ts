@@ -11,6 +11,8 @@ export class TaskComponent implements OnInit {
 
     tasks: Task[] = []
 
+    taskIdForTaskToEdit: string = ''
+
     errorMessage: string = ''
 
     openModal: boolean = false
@@ -29,7 +31,6 @@ export class TaskComponent implements OnInit {
             next: (tasks: Task[]) => {
                 this.tasks = tasks
                 this.spinnerActive = false
-                // this.cdr.detectChanges()
                 console.log(this.tasks)
             },
             error: (err: any) => {
@@ -57,5 +58,10 @@ export class TaskComponent implements OnInit {
         this.getTasks()
     }
 
+    onEditBtnClick(_id: string): void {
+        this.taskIdForTaskToEdit = _id
+        console.log('taskId for task to edit:', this.taskIdForTaskToEdit)
+        this.openModal = true
+    }
 
 }

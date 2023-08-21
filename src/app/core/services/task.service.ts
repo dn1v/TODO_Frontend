@@ -17,6 +17,10 @@ export class TaskService {
         return this.http.get(this.BASE_URL).pipe(map((data: any) => data && data.tasks && data.tasks.map((task: any) => new Task(task))))
     }
 
+    fetchTask(_id: string): Observable<Task> {
+        return this.http.get(`${this.BASE_URL}/${_id}`).pipe(map((data: any) => data && new Task(data)), catchError((err) => this.handleError(err)))
+    }
+
     updateTask(_id: string, obj: any) {
         return this.http.patch(`${this.BASE_URL}/${_id}`, obj).pipe(catchError((err) => this.handleError(err)))
     }
@@ -27,6 +31,10 @@ export class TaskService {
 
     createTask(obj: any) {
         return this.http.post(`${this.BASE_URL}`, obj).pipe(map((data: any) => data && new Task(data)), catchError((err) => this.handleError(err)))
+    }
+
+    editTask(obj: any, _id: string): Observable<Task> {
+        return this.http.patch(`${this.BASE_URL}/${_id}`, obj).pipe(map((data: any) => data && new Task(data)), catchError((err) => this.handleError(err)))
     }
 
     handleError(err: HttpErrorResponse) {

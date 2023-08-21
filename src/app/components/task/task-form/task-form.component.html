@@ -25,9 +25,11 @@
             />
             <label for="checkbox1"></label>
         </div>
-        <!-- <p *ngIf="done">Done</p> -->
-        <button [disabled]="form.invalid" (click)="onCreateTask()" class="btn">
+        <button *ngIf="!_id" [disabled]="form.invalid" (click)="onCreateTask()" class="btn">
             Create
+        </button>
+        <button *ngIf="_id" [disabled]="form.invalid" (click)="onEditTask()" class="btn">
+            Edit
         </button>
     </form>
 </section>

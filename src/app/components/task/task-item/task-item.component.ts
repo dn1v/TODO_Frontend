@@ -13,6 +13,8 @@ export class TaskItemComponent implements OnInit {
 
     @Output() taskUpdated: EventEmitter<void> = new EventEmitter()
 
+    @Output() taskEdit: EventEmitter<string> = new EventEmitter<string>()
+
     constructor(private service: TaskService) { }
 
     ngOnInit(): void {
@@ -25,7 +27,7 @@ export class TaskItemComponent implements OnInit {
         this.service.updateTask(this.task.taskId, { done: !this.task.done }).subscribe({
             next: (task: any) => {
                 this.taskUpdated.emit()
-                //this.ngOnInit()
+
             },
             error: (err: any) => {
                 console.log(err)
@@ -42,5 +44,9 @@ export class TaskItemComponent implements OnInit {
                 console.log(err)
             }
         })
+    }
+
+    onEdit(): void {
+        this.taskEdit.emit(this.task.taskId)
     }
 }

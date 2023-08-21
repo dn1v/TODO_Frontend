@@ -4,6 +4,7 @@
             <button (click)="onModal()" class="btn btn--create">New</button>
 
             <app-task-item
+                (taskEdit)="onEditBtnClick($event)"
                 *ngFor="let task of tasks"
                 [task]="task"
                 (taskUpdated)="onTaskUpdated()"
@@ -11,7 +12,7 @@
         </div>
     </div>
     <div *ngIf="openModal" class="overlay fade-in">
-        <app-task-form (taskCreated)="onTaskCreated()" (modalClosed)="onModal()"></app-task-form>
+        <app-task-form [_id]="taskIdForTaskToEdit" (taskCreated)="onTaskCreated()" (modalClosed)="onModal()"></app-task-form>
     </div>
     <app-loading-spinner *ngIf="spinnerActive"></app-loading-spinner>
 </section>
