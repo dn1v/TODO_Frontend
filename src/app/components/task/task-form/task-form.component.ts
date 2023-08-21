@@ -10,12 +10,12 @@ import { Task } from 'src/models/task.model';
 })
 export class TaskFormComponent implements OnInit {
 
-    @Input() _id: string = ''
-
     form: FormGroup = new FormGroup({
         content: new FormControl('', Validators.required),
         done: new FormControl(false)
     })
+
+    @Input() _id: string = ''
 
     @Output() taskCreated: EventEmitter<void> = new EventEmitter()
 
@@ -46,32 +46,28 @@ export class TaskFormComponent implements OnInit {
 
     onCreateTask(): void {
         this.serivce.createTask(this.form.value).subscribe({
-            next: (data: Task) => {
-                console.log(data)
-                this.taskCreated.emit()
-                this.onClose()
-            },
-            error: (err: any) => {
-                this.taskCreated.emit()
-                console.log(err)
-                this.onClose()
-            }
+            next: (data: Task) => this.successResponse(data),
+            error: (err: any) => this.errorResponse(err)
         })
     }
 
     onEditTask(): void {
         this.serivce.editTask(this.form.value, this._id).subscribe({
-            next: (data: Task) => {
-                console.log(data)
-                this.taskCreated.emit()
-                this.onClose()
-            },
-            error: (err: any) => {
-                this.taskCreated.emit()
-                console.log(err)
-                this.onClose()
-            }
+            next: (data: Task) => this.successResponse(data),
+            error: (err: any) => this.errorResponse(err)
         })
+    }
+
+    private successResponse(task: Task): void {
+        console.log(task)
+        this.taskCreated.emit()
+        this.onClose()
+    }
+
+    private errorResponse(err: any): void {
+        this.taskCreated.emit()
+        console.log(err)
+        this.onClose()
     }
 
     onClose(): void {

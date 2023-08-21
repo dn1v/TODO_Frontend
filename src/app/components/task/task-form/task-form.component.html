@@ -1,7 +1,6 @@
 <section class="task-form fade-in">
     <form [formGroup]="form" class="task-form__form">
         <button (click)="onClose()" class="task-form__btn-close"><ion-icon name="close-circle-outline"></ion-icon></button>
-
         <div class="form__input-box">
             <textarea
                 formControlName="content"
@@ -15,7 +14,6 @@
                 Content required.
             </p>
         </div>
-
         <div class="task-form__switch">
             <input
                 formControlName="done"
